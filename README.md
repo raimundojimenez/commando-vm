@@ -7,12 +7,13 @@
                \/             \/      \/     \/     \/      \/       
                         C O M P L E T E  M A N D I A N T                    
                              O F F E N S I V E   V M                        
-                                   Version 1.0                                 
+                                   Version 2.0                                 
+                              commandovm@fireeye.com
                _____________________________________________________          
 
                                    Developed by                                
                                    Jake Barteaux                               
-                                 Proactive Services  
+                                 Mandiant Red Team  
                                   Blaine Stancill                           
                                     Nhan Huynh   
                      FireEye Labs Advanced Reverse Engineering                            
@@ -22,9 +23,9 @@ ______________________________________________________________________________
   <img width="300" src="https://github.com/fireeye/commando-vm/blob/master/Commando.png?raw=true" alt="Commando VM"/>
 </p>  
 
-Welcome to CommandoVM - a fully customized, Windows-based security distribution for penetration testing and red teaming.
+Welcome to CommandoVM - a fully customizable, Windows-based security distribution for penetration testing and red teaming.
 
-
+For detailed install instructions or more information please see our [blog](https://www.fireeye.com/blog/threat-research/2019/08/commando-vm-customization-containers-kali.html)
 
 Installation (Install Script)
 =============================
@@ -35,8 +36,19 @@ Requirements
 * 60 GB Hard Drive
 * 2 GB RAM
 
+Recommended
+-----------
+* Windows 10
+* 80+ GB Hard Drive
+* 4+ GB RAM
+* 2 network adapters
+* Enable Virtualization support for VM
+  * REQUIRED FOR KALI OR DOCKER
+
 Instructions
-------------
+============
+Standard install
+----------------
 1. Create and configure a new Windows Virtual Machine
   * Ensure VM is updated completely. You may have to check for updates, reboot, and check again until no more remain 
 * Take a snapshot of your machine!
@@ -50,6 +62,18 @@ Instructions
   
 The script will set up the Boxstarter environment and proceed to download and install the Commando VM environment. You will be prompted for the administrator password in order to automate host restarts during installation. If you do not have a password set, hitting enter when prompted will also work.
 
+Custom install
+--------------
+1.	Download the zip from https://github.com/fireeye/commando-vm into your Downloads folder.
+2.	Decompress the zip and edit the `${Env:UserProfile}\Downloads\commando-vm-master\commando-vm-master\profile.json` file by removing tools or adding tools in the “packages” section. Tools are available from our [package list](https://github.com/fireeye/commando-vm/blob/master/packages.csv) or from the chocolatey repository.
+3.	Open an administrative PowerShell window and enable script execution.
+`Set-ExecutionPolicy Unrestricted -f`
+4.	Change to the unzipped project directory.
+`cd ${Env:UserProfile}\Downloads\commando-vm-master\commando-vm-master\`
+5.	Execute the install with the -profile_file argument.
+`.\install.ps1 -profile_file .\profile.json`
+
+For more detailed instructions about custom installations, see our [blog](https://www.fireeye.com/blog/threat-research/2019/08/commando-vm-customization-containers-kali.html)
 
 Installing a new package
 ========================
@@ -65,7 +89,6 @@ Staying up to date
 Type the following command to update all of the packages to the most recent version:
 
     cup all
-
 
 
 Installed Tools
@@ -89,12 +112,19 @@ Installed Tools
 - Java
 - Python 2
 - Python 3 (default)
+- Ruby
+- Ruby Devkit
 - Visual Studio 2017 Build Tools (Windows 10)
 - Visual Studio Code
+
+### Docker
+- Amass
+- SpiderFoot
 
 ### Evasion
 - CheckPlease
 - Demiguise
+- DefenderCheck
 - DotNetToJScript
 - Invoke-CradleCrafter
 - Invoke-DOSfuscation
@@ -114,6 +144,7 @@ Installed Tools
 - CrackMapExec
 - CrackMapExecWin
 - DAMP
+- EvilClippy
 - Exchange-AD-Privesc
 - FuzzySec's PowerShell-Suite
 - FuzzySec's Sharp-Suite
@@ -133,6 +164,7 @@ Installed Tools
 - Invoke-DCOM
 - Invoke-PSImage
 - Invoke-PowerThIEf
+- Juicy Potato
 - Kali Binaries for Windows
 - LuckyStrike
 - MetaTwin
@@ -147,12 +179,17 @@ Installed Tools
 - PowerSploit
 - PowerUpSQL
 - PrivExchange
+- RottenPotatoNG
 - Ruler
+- SharpClipHistory
 - SharpExchangePriv
+- SharpExec
 - SpoolSample
+- SharpSploit
 - UACME
 - impacket-examples-windows
 - vssown
+- Vulcan
 
 ### Information Gathering
 - ADACLScanner
@@ -160,14 +197,24 @@ Installed Tools
 - ADOffline
 - ADRecon
 - BloodHound
+- dnsrecon
+- FOCA
 - Get-ReconInfo
+- GoBuster
 - GoWitness
+- NetRipper
 - Nmap
 - PowerView
   - Dev branch included
 - SharpHound
 - SharpView
 - SpoolerScanner
+- Watson
+
+## Kali Linux
+- kali-linux-default
+- kali-linux-xfce
+- VcXsrv
 
 ### Networking Tools
 - Citrix Receiver
@@ -185,6 +232,7 @@ Installed Tools
 ### Password Attacks
 - ASREPRoast
 - CredNinja
+- DomainPasswordSpray
 - DSInternals
 - Get-LAPSPasswords
 - Hashcat
@@ -214,6 +262,7 @@ Installed Tools
 - AutoIT
 - Cmder
 - CyberChef
+- Explorer Suite
 - Gimp
 - Greenshot
 - Hashcheck
@@ -223,6 +272,7 @@ Installed Tools
 - MobaXterm
 - Mozilla Thunderbird
 - Neo4j Community Edition
+- Notepad++
 - Pidgin
 - Process Hacker 2
 - SQLite DB Browser
@@ -235,8 +285,11 @@ Installed Tools
 - yEd Graph Tool
 
 ### Vulnerability Analysis
+- AD Control Paths
 - Egress-Assess
 - Grouper2
+- NtdsAudit
+- PwndPasswordsNTLM
 - zBang
 
 ### Web Applications
@@ -244,19 +297,23 @@ Installed Tools
 - Fiddler
 - Firefox
 - OWASP Zap
+- Subdomain-Bruteforce
+- Wfuzz
 
 ### Wordlists
 - FuzzDB
 - PayloadsAllTheThings
 - SecLists
-
+- Probable-Wordlists
+- RobotsDisallowed
 
 Legal Notice
 ============
 <pre>This download configuration script is provided to assist penetration testers
-in creating handy and versatile toolboxes for offensive engagements. It
-provides a convenient interface for them to obtain a useful set of pentesting Tools directly from their original sources. Installation and use of this script
-is subject to the Apache 2.0 License.
+in creating handy and versatile toolboxes for offensive engagements. It provides 
+a convenient interface for them to obtain a useful set of pentesting Tools directly 
+from their original sources. Installation and use of this script is subject to the 
+Apache 2.0 License.
  
 You as a user of this script must review, accept and comply with the license
 terms of each downloaded/installed package listed below. By proceeding with the
@@ -366,5 +423,17 @@ http://www.gnu.org/copyleft/gpl.html
 https://github.com/x64dbg/x64dbg/blob/development/LICENSE
 https://www.yworks.com/products/yed/license.html
 http://www.apache.org/licenses/LICENSE-2.0
-
+https://github.com/Dionach/NtdsAudit/blob/master/LICENSE
+https://github.com/ANSSI-FR/AD-control-paths/blob/master/LICENSE.txt
+https://github.com/OJ/gobuster/blob/master/LICENSE
+https://github.com/xmendez/wfuzz/blob/master/LICENSE
+https://github.com/dafthack/DomainPasswordSpray/blob/master/LICENSE
+https://github.com/nettitude/PoshC2_Python/blob/master/LICENSE
+https://github.com/ElevenPaths/FOCA/blob/master/LICENSE.txt
+https://github.com/ohpe/juicy-potato/blob/master/LICENSE
+https://github.com/NytroRST/NetRipper/blob/master/LICENSE.TXT
+https://github.com/unixrox/prebellico/blob/master/LICENSE.md
+https://github.com/rasta-mouse/Watson/blob/master/LICENSE.txt
+https://github.com/berzerk0/Probable-Wordlists/blob/master/License.txt
+https://github.com/cobbr/SharpSploit/blob/master/LICENSE
 </pre>
